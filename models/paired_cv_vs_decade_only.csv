@@ -1,0 +1,14 @@
+structure,mean Δ log-loss vs decade-only,sd of Δ,paired t,folds better (of 5),pop Markov blanket
+HC start=hand,-0.025042533197952112,0.01408922494039843,-3.9744419438470957,5,"acousticness, decade"
+HC + K2,-0.023791361916814368,0.014236075226234463,-3.7369219871260926,5,"acousticness, danceability, decade, duration, energy, key, mode, tempo, valence"
+Chow-Liu tree,-0.02026668782677863,0.009909273224093301,-4.573260887514894,5,"acousticness, decade"
+HC + BDeu(ESS=10),-0.02025486501562761,0.009896126810337079,-4.5766647818938955,5,"acousticness, decade"
+GES (BIC),-0.02025486501562761,0.009896126810337079,-4.5766647818938955,5,"acousticness, decade"
+HC + BIC,-0.01968051266354385,0.013953242288165682,-3.153888052603631,4,decade
+HC + AIC,-0.019657530104193733,0.01040894439236512,-4.22286563611261,5,"acousticness, decade"
+Hand-designed,-0.010856122312932693,0.016788790131510137,-1.4459068982111476,3,"danceability, decade, energy"
+HC popularity-sink,0.0,0.0,,0,decade
+"PC (χ², α=0.01)",0.0009740898208602467,0.004766333844615563,0.45698247891189947,2,"acousticness, decade, duration"
+TAN,0.044747303277709614,0.02058934477877706,4.859698694340917,0,"acousticness, danceability, decade, duration, energy, key, mode, tempo, valence"
+Naive Bayes,0.04854845056685706,0.030978227805117154,3.5043204005313835,0,"acousticness, danceability, decade, duration, energy, key, mode, tempo, valence"
+Empty graph (prior only),0.07013728546129698,0.007532000667003293,20.82205578337599,0,-

@@ -1,0 +1,22 @@
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrcc}
+\toprule
+Structure & Edges & Params & Train BIC & CV log-loss $\downarrow$ & CV acc.\ $\uparrow$ \\
+\midrule
+Hand-designed (proposal) & 12 & $1{,}031$ & $-50{,}913$ & 1.321 & 0.459 \\
+\midrule
+HC + BIC & 9 & $166$ & $-48{,}064$ & 1.312 & 0.463 \\
+HC + BIC, start = hand & 9 & $166$ & $-48{,}105$ & \textbf{1.306} & 0.469 \\
+GES (BIC) & 9 & $166$ & $-48{,}049$ & 1.311 & 0.466 \\
+HC + AIC & 14 & $486$ & $-48{,}653$ & 1.312 & 0.468 \\
+HC + BDeu (ESS 10) & 10 & $246$ & $-48{,}105$ & 1.311 & 0.466 \\
+HC + K2 & 19 & $6{,}000{,}286$ & $\approx -24.6\,\mathrm{M}$ & 1.308 & 0.467 \\
+PC ($\chi^2$, $\alpha{=}0.01$) & 9 & $590$ & $-50{,}098$ & 1.332 & 0.455 \\
+Chow-Liu tree & 9 & $206$ & $-48{,}199$ & 1.311 & 0.466 \\
+TAN & 17 & $934$ & $-50{,}511$ & 1.376 & 0.444 \\
+Naive Bayes & 9 & $199$ & $-50{,}898$ & 1.380 & 0.454 \\
+\midrule
+Hand, decade $\to$ pop.\ only & 10 & $551$ & $-49{,}335$ & 1.331 & 0.463 \\
+Empty graph (prior only) & 0 & $43$ & $-51{,}079$ & 1.402 & 0.332 \\
+\bottomrule
+\end{tabular}

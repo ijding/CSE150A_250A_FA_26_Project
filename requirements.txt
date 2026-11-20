@@ -1,0 +1,10 @@
+# Tested versions (the notebook relies on pgmpy 1.1 module paths, so pgmpy is pinned)
+pgmpy==1.1.2
+pandas>=3.0,<4
+numpy>=2.0,<3
+scipy>=1.13
+scikit-learn>=1.5
+matplotlib>=3.8
+networkx>=3.2
+jupyter
+nbconvert

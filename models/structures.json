@@ -1,0 +1,1622 @@
+{
+  "Empty graph (prior only)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [],
+    "train_bic": -51079.23,
+    "n_params": 43,
+    "popularity_markov_blanket": []
+  },
+  "Hand-designed": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "popularity"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "popularity"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -50913.13,
+    "n_params": 1031,
+    "popularity_markov_blanket": [
+      "danceability",
+      "decade",
+      "energy"
+    ]
+  },
+  "Hand, decade-only pop parent": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -49335.11,
+    "n_params": 551,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "HC + BIC": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "duration",
+        "decade"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48064.11,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "HC popularity-sink": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "duration",
+        "decade"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48064.11,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "HC start=hand": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48105.48,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "HC + AIC": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "mode"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "decade",
+        "valence"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48653.13,
+    "n_params": 486,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "HC + K2": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "duration"
+      ],
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "duration"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "danceability",
+        "valence"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "key",
+        "duration"
+      ],
+      [
+        "mode",
+        "duration"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "popularity",
+        "duration"
+      ],
+      [
+        "tempo",
+        "duration"
+      ],
+      [
+        "valence",
+        "duration"
+      ]
+    ],
+    "train_bic": -24585532.08,
+    "n_params": 6000286,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "danceability",
+      "decade",
+      "duration",
+      "energy",
+      "key",
+      "mode",
+      "tempo",
+      "valence"
+    ]
+  },
+  "HC + BDeu(ESS=10)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "popularity"
+      ],
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "valence",
+        "danceability"
+      ],
+      [
+        "valence",
+        "energy"
+      ]
+    ],
+    "train_bic": -48105.28,
+    "n_params": 246,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "GES (BIC)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "popularity"
+      ],
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48048.58,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "PC (\u03c7\u00b2, \u03b1=0.01)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "duration"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "popularity",
+        "duration"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "tempo",
+        "energy"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -50097.94,
+    "n_params": 590,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade",
+      "duration"
+    ]
+  },
+  "Chow-Liu tree": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "key"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "danceability",
+        "valence"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "key",
+        "mode"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "popularity",
+        "decade"
+      ]
+    ],
+    "train_bic": -48199.07,
+    "n_params": 206,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "Naive Bayes": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "popularity",
+        "danceability"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "popularity",
+        "duration"
+      ],
+      [
+        "popularity",
+        "energy"
+      ],
+      [
+        "popularity",
+        "key"
+      ],
+      [
+        "popularity",
+        "mode"
+      ],
+      [
+        "popularity",
+        "tempo"
+      ],
+      [
+        "popularity",
+        "valence"
+      ]
+    ],
+    "train_bic": -50897.82,
+    "n_params": 199,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "danceability",
+      "decade",
+      "duration",
+      "energy",
+      "key",
+      "mode",
+      "tempo",
+      "valence"
+    ]
+  },
+  "TAN": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "danceability",
+        "valence"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "duration",
+        "energy"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "key"
+      ],
+      [
+        "key",
+        "mode"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "popularity",
+        "danceability"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "popularity",
+        "duration"
+      ],
+      [
+        "popularity",
+        "energy"
+      ],
+      [
+        "popularity",
+        "key"
+      ],
+      [
+        "popularity",
+        "mode"
+      ],
+      [
+        "popularity",
+        "tempo"
+      ],
+      [
+        "popularity",
+        "valence"
+      ]
+    ],
+    "train_bic": -50510.91,
+    "n_params": 934,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "danceability",
+      "decade",
+      "duration",
+      "energy",
+      "key",
+      "mode",
+      "tempo",
+      "valence"
+    ]
+  },
+  "HC max-indegree=1": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "duration",
+        "decade"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48064.11,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "HC max-indegree=2": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "duration",
+        "decade"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48064.11,
+    "n_params": 166,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "HC + BDeu(ESS=1)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "key",
+        "mode"
+      ],
+      [
+        "popularity",
+        "acousticness"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48111.41,
+    "n_params": 162,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "decade"
+    ]
+  },
+  "HC + BDeu(ESS=100)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "popularity"
+      ],
+      [
+        "danceability",
+        "acousticness"
+      ],
+      [
+        "danceability",
+        "decade"
+      ],
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "energy",
+        "duration"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "key",
+        "mode"
+      ],
+      [
+        "mode",
+        "danceability"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "popularity",
+        "decade"
+      ],
+      [
+        "valence",
+        "danceability"
+      ],
+      [
+        "valence",
+        "energy"
+      ]
+    ],
+    "train_bic": -48838.13,
+    "n_params": 566,
+    "popularity_markov_blanket": [
+      "acousticness",
+      "danceability",
+      "decade"
+    ]
+  },
+  "Hand, best 0 pop parent(s)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -49533.58,
+    "n_params": 535,
+    "popularity_markov_blanket": []
+  },
+  "Hand, best 1 pop parent(s)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -49335.11,
+    "n_params": 551,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "Hand, best 2 pop parent(s)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "popularity"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -49410.22,
+    "n_params": 571,
+    "popularity_markov_blanket": [
+      "decade",
+      "mode"
+    ]
+  },
+  "Hand, best 3 pop parent(s)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "popularity"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "tempo",
+        "popularity"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -49806.92,
+    "n_params": 691,
+    "popularity_markov_blanket": [
+      "decade",
+      "mode",
+      "tempo"
+    ]
+  },
+  "Hand, best 4 pop parent(s)": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "acousticness",
+        "energy"
+      ],
+      [
+        "decade",
+        "acousticness"
+      ],
+      [
+        "decade",
+        "duration"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "energy",
+        "danceability"
+      ],
+      [
+        "energy",
+        "popularity"
+      ],
+      [
+        "energy",
+        "tempo"
+      ],
+      [
+        "energy",
+        "valence"
+      ],
+      [
+        "mode",
+        "popularity"
+      ],
+      [
+        "mode",
+        "valence"
+      ],
+      [
+        "tempo",
+        "danceability"
+      ],
+      [
+        "tempo",
+        "popularity"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -52012.65,
+    "n_params": 1331,
+    "popularity_markov_blanket": [
+      "decade",
+      "energy",
+      "mode",
+      "tempo"
+    ]
+  },
+  "Bootstrap consensus": {
+    "nodes": [
+      "mode",
+      "key",
+      "popularity",
+      "energy",
+      "tempo",
+      "valence",
+      "danceability",
+      "acousticness",
+      "decade",
+      "duration"
+    ],
+    "edges": [
+      [
+        "danceability",
+        "energy"
+      ],
+      [
+        "danceability",
+        "mode"
+      ],
+      [
+        "danceability",
+        "tempo"
+      ],
+      [
+        "decade",
+        "popularity"
+      ],
+      [
+        "duration",
+        "decade"
+      ],
+      [
+        "energy",
+        "acousticness"
+      ],
+      [
+        "mode",
+        "key"
+      ],
+      [
+        "valence",
+        "danceability"
+      ]
+    ],
+    "train_bic": -48118.13,
+    "n_params": 150,
+    "popularity_markov_blanket": [
+      "decade"
+    ]
+  },
+  "_states": {
+    "mode": [
+      "0.0",
+      "1.0"
+    ],
+    "key": [
+      "0.0",
+      "1.0",
+      "10.0",
+      "11.0",
+      "2.0",
+      "3.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0",
+      "8.0",
+      "9.0"
+    ],
+    "popularity": [
+      "(-0.001, 20.0]",
+      "(20.0, 40.0]",
+      "(40.0, 60.0]",
+      "(60.0, 80.0]",
+      "(80.0, 100.0]"
+    ],
+    "energy": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "tempo": [
+      "fast",
+      "mid",
+      "slow",
+      "upbeat"
+    ],
+    "valence": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "danceability": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "acousticness": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "decade": [
+      "1990s",
+      "2000s",
+      "2010s",
+      "2020s",
+      "Before 1990"
+    ],
+    "duration": [
+      "2-3 min",
+      "3-4 min",
+      "4-5 min",
+      "5+ min",
+      "< 2 min"
+    ]
+  },
+  "_recommended": {
+    "main_learned": "HC + BIC",
+    "best_bic": "GES (BIC)",
+    "proposal": "Hand-designed",
+    "best_predictive": "HC start=hand",
+    "for_feature_queries": "HC start=hand",
+    "note": "see the Findings section of structure_learning.ipynb"
+  }
+}
