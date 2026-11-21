@@ -1,0 +1,829 @@
+{
+  "format_version": 1,
+  "structure": "HC start=hand",
+  "estimator": "BDeu",
+  "equivalent_sample_size": 20.0,
+  "cv_log_loss": 1.3036097692167843,
+  "cv_accuracy": 0.46821413880237406,
+  "target": "popularity",
+  "primary_model_id": "HC start=hand",
+  "feature_query_model_id": "HC start=hand",
+  "model_path": "models/parameter_model_1.json",
+  "per_structure": {
+    "HC + BIC": {
+      "structure": "HC + BIC",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 10.0,
+      "cv_log_loss": 1.3300171802413012,
+      "cv_accuracy": 0.4626165990871874,
+      "model_path": "models/parameter_model_0.json"
+    },
+    "HC start=hand": {
+      "structure": "HC start=hand",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 20.0,
+      "cv_log_loss": 1.3036097692167843,
+      "cv_accuracy": 0.46821413880237406,
+      "model_path": "models/parameter_model_1.json"
+    },
+    "Hand-designed": {
+      "structure": "Hand-designed",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 500.0,
+      "cv_log_loss": 1.317642737065523,
+      "cv_accuracy": 0.45924976983800514,
+      "model_path": "models/parameter_model_2.json"
+    },
+    "GES (BIC)": {
+      "structure": "GES (BIC)",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 20.0,
+      "cv_log_loss": 1.3036097692167838,
+      "cv_accuracy": 0.46821413880237406,
+      "model_path": "models/parameter_model_3.json"
+    },
+    "Naive Bayes": {
+      "structure": "Naive Bayes",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 1000.0,
+      "cv_log_loss": 1.358548421076428,
+      "cv_accuracy": 0.4550547491723962,
+      "model_path": "models/parameter_model_4.json"
+    }
+  },
+  "equivalent_sample_sizes_tested": [
+    1,
+    5,
+    10,
+    20,
+    50,
+    100,
+    500,
+    1000
+  ],
+  "selection_metric": "mean_unclipped_validation_popularity_log_loss_nats",
+  "selection_tie_tolerance": 1e-12,
+  "selection_tie_break": "prefer recommended for_feature_queries model within numerical tolerance",
+  "tied_best_configurations": [
+    {
+      "structure": "GES (BIC)",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 20.0,
+      "cv_log_loss": 1.3036097692167838,
+      "cv_accuracy": 0.46821413880237406
+    },
+    {
+      "structure": "HC start=hand",
+      "estimator": "BDeu",
+      "equivalent_sample_size": 20.0,
+      "cv_log_loss": 1.3036097692167843,
+      "cv_accuracy": 0.46821413880237406
+    }
+  ],
+  "selection_scope": "parameter CV conditional on frozen exported graphs; not nested structure CV",
+  "cv": {
+    "method": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 150
+  },
+  "training_rows": 3571,
+  "test_used_for_fitting_or_selection": false,
+  "state_names": {
+    "mode": [
+      "0.0",
+      "1.0"
+    ],
+    "key": [
+      "0.0",
+      "1.0",
+      "10.0",
+      "11.0",
+      "2.0",
+      "3.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0",
+      "8.0",
+      "9.0"
+    ],
+    "popularity": [
+      "(-0.001, 20.0]",
+      "(20.0, 40.0]",
+      "(40.0, 60.0]",
+      "(60.0, 80.0]",
+      "(80.0, 100.0]"
+    ],
+    "energy": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "tempo": [
+      "fast",
+      "mid",
+      "slow",
+      "upbeat"
+    ],
+    "valence": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "danceability": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "acousticness": [
+      "(-0.001, 0.2]",
+      "(0.2, 0.4]",
+      "(0.4, 0.6]",
+      "(0.6, 0.8]",
+      "(0.8, 1.0]"
+    ],
+    "decade": [
+      "1990s",
+      "2000s",
+      "2010s",
+      "2020s",
+      "Before 1990"
+    ],
+    "duration": [
+      "2-3 min",
+      "3-4 min",
+      "4-5 min",
+      "5+ min",
+      "< 2 min"
+    ]
+  },
+  "train_sha256": "b9dc7efb2d2f9f5355de521e4ff7908973c64938516f708000a6ce6d8b513948",
+  "structures_sha256": "befded7a4965ed2f2e75760f057fd529156889ff99fd8e815034fc529756b21d",
+  "package_versions": {
+    "pgmpy": "1.1.2",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "query_specs": [
+    {
+      "query_id": "prior",
+      "experiment": "prior",
+      "evidence": {}
+    },
+    {
+      "query_id": "decade_0",
+      "experiment": "decade",
+      "evidence": {
+        "decade": "1990s"
+      }
+    },
+    {
+      "query_id": "decade_0_energy_0",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_0_energy_1",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_0_energy_2",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_0_energy_3",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_0_energy_4",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_0_acousticness_0",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_0_acousticness_1",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "acousticness": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_0_acousticness_2",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "acousticness": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_0_acousticness_3",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "acousticness": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_0_acousticness_4",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_0_joint_0_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_0_joint_0_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_0_joint_4_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_0_joint_4_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "1990s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_1",
+      "experiment": "decade",
+      "evidence": {
+        "decade": "2000s"
+      }
+    },
+    {
+      "query_id": "decade_1_energy_0",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_1_energy_1",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_1_energy_2",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_1_energy_3",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_1_energy_4",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_1_acousticness_0",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_1_acousticness_1",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "acousticness": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_1_acousticness_2",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "acousticness": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_1_acousticness_3",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "acousticness": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_1_acousticness_4",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_1_joint_0_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_1_joint_0_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_1_joint_4_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_1_joint_4_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2000s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_2",
+      "experiment": "decade",
+      "evidence": {
+        "decade": "2010s"
+      }
+    },
+    {
+      "query_id": "decade_2_energy_0",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_2_energy_1",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_2_energy_2",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_2_energy_3",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_2_energy_4",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_2_acousticness_0",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_2_acousticness_1",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "acousticness": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_2_acousticness_2",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "acousticness": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_2_acousticness_3",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "acousticness": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_2_acousticness_4",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_2_joint_0_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_2_joint_0_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_2_joint_4_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_2_joint_4_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2010s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_3",
+      "experiment": "decade",
+      "evidence": {
+        "decade": "2020s"
+      }
+    },
+    {
+      "query_id": "decade_3_energy_0",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_3_energy_1",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_3_energy_2",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_3_energy_3",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_3_energy_4",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_3_acousticness_0",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_3_acousticness_1",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "acousticness": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_3_acousticness_2",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "acousticness": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_3_acousticness_3",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "acousticness": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_3_acousticness_4",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_3_joint_0_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_3_joint_0_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_3_joint_4_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_3_joint_4_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "2020s",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_4",
+      "experiment": "decade",
+      "evidence": {
+        "decade": "Before 1990"
+      }
+    },
+    {
+      "query_id": "decade_4_energy_0",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_4_energy_1",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_4_energy_2",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_4_energy_3",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_4_energy_4",
+      "experiment": "energy",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_4_acousticness_0",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_4_acousticness_1",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "acousticness": "(0.2, 0.4]"
+      }
+    },
+    {
+      "query_id": "decade_4_acousticness_2",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "acousticness": "(0.4, 0.6]"
+      }
+    },
+    {
+      "query_id": "decade_4_acousticness_3",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "acousticness": "(0.6, 0.8]"
+      }
+    },
+    {
+      "query_id": "decade_4_acousticness_4",
+      "experiment": "acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_4_joint_0_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_4_joint_0_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(-0.001, 0.2]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "decade_4_joint_4_0",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "decade_4_joint_4_4",
+      "experiment": "energy_acousticness",
+      "evidence": {
+        "decade": "Before 1990",
+        "energy": "(0.8, 1.0]",
+        "acousticness": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "partial_energy_0",
+      "experiment": "partial",
+      "evidence": {
+        "energy": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "partial_energy_4",
+      "experiment": "partial",
+      "evidence": {
+        "energy": "(0.8, 1.0]"
+      }
+    },
+    {
+      "query_id": "partial_acousticness_0",
+      "experiment": "partial",
+      "evidence": {
+        "acousticness": "(-0.001, 0.2]"
+      }
+    },
+    {
+      "query_id": "partial_acousticness_4",
+      "experiment": "partial",
+      "evidence": {
+        "acousticness": "(0.8, 1.0]"
+      }
+    }
+  ],
+  "ve_results_path": "models/ve_queries.csv",
+  "mle_zero_policy": "Zero true-class probability gives infinite loss; impossible evidence disqualifies candidate",
+  "clipped_diagnostic_floor": 1e-15
+}

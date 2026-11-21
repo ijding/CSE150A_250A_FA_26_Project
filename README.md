@@ -10,7 +10,7 @@ A CSE 150A/250A final project. We model how a song's audio features (energy, aco
 |---|---|---|
 | 1. Data | `data_processing.ipynb` | Cleans the data, discretizes the continuous features and makes the 80/20 train/test split |
 | 2. Structure | `structure_learning.ipynb` | Compares a hand-designed DAG with structures learned by Hill Climb (BIC, AIC, K2, BDeu), GES, PC, Chow-Liu, Naive Bayes and TAN; covers cross-validated structure selection and bootstrap edge stability |
-| 3. Parameters + exact inference | *in progress* | Dirichlet/BDeu CPT estimation with a pseudocount sweep; Variable Elimination queries |
+| 3. Parameters + exact inference | `parameter_learning.ipynb` | MLE/BDeu CPT estimation with training-only cross-validation; Variable Elimination queries and fitted models |
 | 4. Approximate inference | *in progress* | Gibbs sampling vs. Variable Elimination: accuracy and convergence |
 | 5. Evaluation | *in progress* | Test-set accuracy, log-likelihood and confusion matrix against an always-majority baseline |
 
@@ -41,6 +41,7 @@ data/
   spotify_processed.csv           cleaned, discretized dataset
   train.csv, test.csv             fixed 80/20 split
 bn_structures.py                  loader for the data split, learned structures and state names
+parameter_inference.py            CPT fitting, exact popularity queries and fitted-model JSON loading
 models/                           exported structures and result tables (JSON, CSV, LaTeX)
 figures/<stage>/                  figures for each stage
 *.ipynb                           one notebook per stage; each runs top to bottom
@@ -87,6 +88,31 @@ VariableElimination(model).query(["popularity"], evidence={"decade": "2020s", "a
 | Prior-knowledge baseline | `Hand-designed` | The DAG from our proposal |
 
 Pass `state_names=state_names()` when fitting. Then every CPT covers the full state space, and evidence on any state is valid.
+
+## Using the fitted parameters and exact answers
+
+Run `parameter_learning.ipynb` to regenerate the parameter sweep and inference
+artifacts. It compares MLE with eight BDeu strengths using five-fold CV inside
+train, then refits each selected configuration on all training songs.
+`models/parameter_config.json` records the default model, per-structure model
+paths, exact evidence queries and state order. The default is `HC start=hand`
+with BDeu ESS 20 (tied with `GES (BIC)` to numerical precision).
+
+```python
+import json
+from parameter_inference import load_fitted_model, exact_popularity
+
+with open("models/parameter_config.json") as handle:
+    config = json.load(handle)
+model = load_fitted_model(config["model_path"])
+posterior = exact_popularity(model, {"decade": "2020s"})
+```
+
+`models/ve_queries.csv` contains normalized posterior distributions for the
+same 80 evidence configurations on each of five tuned models. Filter by
+`model_id` and `query_id`, decode `evidence_json`, and align comparisons by
+`popularity_state`. See `NOTES.md` for the Gibbs/evaluation handoff. No test-set
+metrics are computed during parameter selection.
 
 ## Reproducibility
 

@@ -10,7 +10,7 @@ Internal working notes. The public overview, setup steps and usage examples are 
 |---|---|---|---|---|
 | 1. Data cleaning, discretization, split | Irving | `data_processing.ipynb` | §2 | ✅ done, split frozen |
 | 2. Structure learning | Zachary | `structure_learning.ipynb` | §3 (structure) | ✅ done; LaTeX draft in `report/` |
-| 3. Parameter learning + Variable Elimination | Ethan | `parameter_learning.ipynb` | §3 (CPTs, VE) | ⏳ |
+| 3. Parameter learning + Variable Elimination | Ethan | `parameter_learning.ipynb` | §3 (CPTs, VE) | ✅ done; handoff below |
 | 4. Gibbs sampling + convergence | Andrew | `approximate_inference.ipynb` | §3 (Gibbs), §4 (convergence) | ⏳ |
 | 5. Evaluation, results, report integration | Jeslyn | `evaluation.ipynb` | §1, §4, §5, §7 | ⏳ |
 
@@ -71,3 +71,91 @@ Most tutorials and AI answers use the pre-1.0 API. Everything below was checked 
 
 * **Contribution (draft):** "Zachary designed the hand-built network structure and ran the structure-learning experiments: Hill Climb with BIC, AIC, K2 and BDeu, plus GES, PC, Chow-Liu, Naive Bayes and TAN. He compared these structures with cross-validation and bootstrap stability analysis, and wrote the structure-learning part of Section 3."
 * **AI use (draft):** "Used Claude Code to help write and debug the structure-learning notebook, generate figures and draft text, and run an automated code review. All results were checked by rerunning the notebook, and the claims in the text were verified against its outputs."
+
+### Parameter learning + exact inference (Ethan)
+
+**Run:** `parameter_learning.ipynb` from the repository root with the dependencies
+in `requirements.txt` (pgmpy 1.1.2). The reusable functions live in
+`parameter_inference.py`. Rerunning the notebook regenerates this stage's outputs.
+
+**Parameter selection:** five stratified folds of the 3,571 canonical training
+songs, seed 150; MLE versus BDeu ESS = 1, 5, 10, 20, 50, 100, 500, 1000.
+Compared `HC + BIC`, `HC start=hand`, `Hand-designed`, `GES (BIC)` and `Naive Bayes`.
+Selection minimizes unclipped popularity log loss given the other nine variables.
+Zero true-class probability gives infinite loss; impossible MLE evidence also
+disqualifies a configuration. Clipped loss is exported as a separate diagnostic.
+
+`HC start=hand` and `GES (BIC)` tie to numerical precision with **BDeu ESS 20**:
+mean validation log loss **1.303610 nats/song**, accuracy **46.82%**. The default
+is `HC start=hand`, the documented feature-query recommendation; differences
+within 1e-12 nats are treated as numerical ties. Best ESS by structure:
+
+| Structure | BDeu ESS | CV log loss | CV accuracy |
+|---|---:|---:|---:|
+| HC + BIC | 10 | 1.330017 | 46.26% |
+| HC start=hand | 20 | 1.303610 | 46.82% |
+| Hand-designed | 500 | 1.317643 | 45.92% |
+| GES (BIC) | 20 | 1.303610 | 46.82% |
+| Naive Bayes | 1000 | 1.358548 | 45.51% |
+
+These scores tune CPTs conditional on the **frozen exported graphs**, which were
+learned on the full training split. This is not nested structure-search CV or
+final test performance. Naive Bayes selects the largest tested ESS; its optimum
+is established only within this grid. No test counts or metrics enter fitting
+or selection; the test return from `load_split()` is discarded immediately.
+
+**Produced in `models/`:**
+
+* `parameter_sweep.csv`: 45 configurations with mean/std CV log loss and accuracy,
+  plus counts of zero-probability targets and impossible evidence.
+* `parameter_cv_folds.csv`: 225 fold results for paired comparisons.
+* `parameter_config.json`: selected model, per-structure parameters/model paths,
+  query specifications, state order, versions, seeds, and frozen-input hashes.
+* `parameter_model_0.json` through `parameter_model_4.json`: fitted CPTs for all
+  five structures. Resolve filenames through the config rather than assuming
+  which number identifies a graph. Load with `load_fitted_model()`.
+* `ve_queries.csv`: 80 queries per model, 400 posterior distributions / 2,000 rows.
+  Each row has `model_id`, `query_id`, `experiment`, `evidence_json`,
+  `train_evidence_count`, `popularity_state`, and `probability`.
+
+The query list includes the prior, decade-only evidence, all five energy and
+acousticness bins while holding decade fixed, low/high joint combinations, and
+feature-only partial evidence. All CPTs and posteriors are normalized. Checks
+also compare vectorized exact validation predictions against pgmpy VE, verify
+the BDeu count formula, reject invalid/impossible evidence, and reproduce every
+query after model serialization/reloading.
+
+**Inference finding:** in `HC start=hand`, within the `2000s` category,
+P(popularity > 60) changes from about 0.648 at the lowest acousticness bin to
+0.268 at the highest (179 and 41 matching training songs). Energy's association
+runs in the opposite direction. These are observational, model-based
+associations. Once acousticness and decade are known, energy adds no information
+in this graph. In `HC + BIC`, neither audio feature changes the prediction once
+decade is known; both conditional-independence checks run in the notebook.
+`figures/parameters/feature_queries.png` is a 5.5-inch-wide report figure.
+
+**Andrew:** load the default fitted model and exact evidence specifications:
+
+```python
+import json
+import pandas as pd
+from parameter_inference import load_fitted_model, exact_popularity
+
+with open("models/parameter_config.json") as handle:
+    config = json.load(handle)
+model = load_fitted_model(config["model_path"])
+query = next(q for q in config["query_specs"] if q["query_id"] != "prior")
+posterior = exact_popularity(model, query["evidence"])
+answers = pd.read_csv("models/ve_queries.csv")
+reference = answers[(answers.model_id == config["primary_model_id"]) &
+                    (answers.query_id == query["query_id"])].set_index("popularity_state").probability
+```
+
+Clamp `query["evidence"]` in the conditional sampler and align estimates using
+`config["state_names"]["popularity"]`. Reuse exactly this graph and these CPTs;
+the previous structure notebook's fixed add-one CPTs are not the tuned model.
+
+**Jeslyn:** `config["per_structure"]` supplies tuned fitted models for each
+recommended structure plus Naive Bayes. Your stage still owns held-out accuracy,
+test log-likelihood, confusion matrices and final baseline comparisons. Gibbs
+sampling and final test evaluation remain with their assigned owners.
