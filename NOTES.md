@@ -11,7 +11,7 @@ Internal working notes. The public overview, setup steps and usage examples are 
 | 1. Data cleaning, discretization, split | Irving | `data_processing.ipynb` | §2 | ✅ done, split frozen |
 | 2. Structure learning | Zachary | `structure_learning.ipynb` | §3 (structure) | ✅ done; LaTeX draft in `report/` |
 | 3. Parameter learning + Variable Elimination | Ethan | `parameter_learning.ipynb` | §3 (CPTs, VE) | ✅ done; handoff below |
-| 4. Gibbs sampling + convergence | Andrew | `approximate_inference.ipynb` | §3 (Gibbs), §4 (convergence) | ⏳ |
+| 4. Gibbs sampling + convergence | Andrew | `approximate_inference.ipynb` | §3 (Gibbs), §4 (convergence) | ✅ done; handoff below |
 | 5. Evaluation, results, report integration | Jeslyn | `evaluation.ipynb` | §1, §4, §5, §7 | ⏳ |
 
 When you finish, update your row and add a handoff section below.
@@ -159,3 +159,79 @@ the previous structure notebook's fixed add-one CPTs are not the tuned model.
 recommended structure plus Naive Bayes. Your stage still owns held-out accuracy,
 test log-likelihood, confusion matrices and final baseline comparisons. Gibbs
 sampling and final test evaluation remain with their assigned owners.
+
+### Approximate Inference and Validation (Andrew)
+
+**Produced:**
+
+- `approximate_inference.ipynb`: Gibbs Sampling implementation, validation, convergence analysis, and runtime comparison.
+- `results/gibbs/validation_results.csv`: Comparison of all 80 queries and 400 popularity probabilities.
+- `results/gibbs/experiment_summary.csv`: Mean and maximum absolute errors by experiment type.
+- `results/gibbs/convergence_results.csv`: Convergence experiment results.
+- `results/gibbs/convergence_summary.csv`: Summary of errors and runtimes at different sample sizes.
+- `results/gibbs/runtime_comparison.csv`: Runtime comparison between Gibbs Sampling and Variable Elimination.
+- `results/gibbs/exact_runtime_results.csv`: Exact inference runtimes.
+- `figures/gibbs/gibbs_convergence.png`: Convergence graph.
+- `figures/gibbs/runtime_comparison.png`: Runtime comparison graph.
+- `figures/gibbs/experiment_error.png`: Mean absolute error by experiment type.
+
+**Implementation:**
+
+- Used the same trained Bayesian Network and queries as Ethan.
+- Implemented Gibbs Sampling manually to support fixed evidence variables.
+- Non-evidence variables are randomly initialized and resampled using their Markov blanket conditional probabilities.
+- Initial samples are discarded as burn-in to reduce the influence of the starting assignment.
+- Used 1,000 samples and 200 burn-in iterations for the full validation experiment.
+- Used 500 burn-in iterations for the convergence experiment.
+
+**Validation results:**
+
+- Successfully validated all 80 queries and 400 probability estimates.
+- Overall mean absolute error: 0.007979.
+- Maximum absolute error: 0.054358.
+- Energy and acousticness combined had the lowest average error.
+- The prior distribution without evidence had the highest average error.
+
+| Experiment | Queries | MAE | Maximum Error |
+|---|---:|---:|---:|
+| Acousticness | 25 | 0.007138 | 0.032271 |
+| Decade | 5 | 0.009680 | 0.037320 |
+| Energy | 25 | 0.008406 | 0.031197 |
+| Energy + Acousticness | 20 | 0.006997 | 0.036635 |
+| Partial | 4 | 0.009829 | 0.026084 |
+| Prior | 1 | 0.022047 | 0.054358 |
+
+**Convergence and runtime results:**
+
+| Samples | MAE | Maximum Error | Mean Runtime (s) |
+|---:|---:|---:|---:|
+| 100 | 0.033134 | 0.082277 | 0.592415 |
+| 500 | 0.011536 | 0.041358 | 0.954155 |
+| 1,000 | 0.009501 | 0.036717 | 1.425487 |
+| 5,000 | 0.003745 | 0.009649 | 5.238291 |
+| 10,000 | 0.002611 | 0.007640 | 10.160569 |
+
+- Increasing the sample size from 100 to 10,000 reduced MAE by approximately 92%.
+- Increasing the sample size improved approximation accuracy but also increased runtime.
+- Variable Elimination had an average runtime of approximately 0.000765 seconds per query.
+- Variable Elimination was significantly faster for our small 10-variable Bayesian Network.
+- A sample size of 5,000 provided a reasonable balance between accuracy and runtime for the three tested convergence queries.
+
+**Handoff to Jeslyn (Results and Discussion):**
+
+- All results can be found in `results/gibbs/`, while all figures can be found in `figures/gibbs/`.
+- The notebook includes a summary of findings at the end.
+- Use `gibbs_convergence.png` to demonstrate how increasing the sample size reduces the observed approximation error.
+- Use `runtime_comparison.png` to demonstrate the computational cost of Gibbs Sampling compared to Variable Elimination.
+- Use `experiment_error.png` to compare approximation errors across different types of evidence.
+- The validation errors measure agreement with exact inference, not prediction accuracy on the test dataset.
+- The convergence experiment was limited to three queries and one random seed per query.
+- The runtime comparison is between our custom Gibbs Sampling implementation and pgmpy's Variable Elimination implementation.
+
+### Andrew: Reflections & Contributions (§6)
+
+- **Contribution (Draft):** "Andrew implemented Gibbs Sampling for approximate inference and validated its results against Variable Elimination. He also conducted convergence and runtime experiments and generated tables and figures for the final report."
+
+- **Reflection (Draft):** "Through this project, I learned how Gibbs Sampling uses Markov blanket conditional probabilities to approximate posterior distributions. I also gained a better understanding of the trade-off between accuracy and computational cost, and why exact inference can be more efficient for smaller Bayesian Networks."
+
+- **AI Use (Draft):** "Used ChatGPT to help understand Gibbs Sampling, write and debug the implementation, organize experiments, and generate plotting code in the notebook. The implementation was tested by running the notebook and comparing its outputs against exact inference results."
