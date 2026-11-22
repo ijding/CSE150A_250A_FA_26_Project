@@ -11,7 +11,7 @@ A CSE 150A/250A final project. We model how a song's audio features (energy, aco
 | 1. Data | `data_processing.ipynb` | Cleans the data, discretizes the continuous features and makes the 80/20 train/test split |
 | 2. Structure | `structure_learning.ipynb` | Compares a hand-designed DAG with structures learned by Hill Climb (BIC, AIC, K2, BDeu), GES, PC, Chow-Liu, Naive Bayes and TAN; covers cross-validated structure selection and bootstrap edge stability |
 | 3. Parameters + exact inference | `parameter_learning.ipynb` | MLE/BDeu CPT estimation with training-only cross-validation; Variable Elimination queries and fitted models |
-| 4. Approximate inference | *in progress* | Gibbs sampling vs. Variable Elimination: accuracy and convergence |
+| 4. Approximate inference | `appoximate_inference.ipynb` | Gibbs sampling vs. Variable Elimination: accuracy and convergence |
 | 5. Evaluation | *in progress* | Test-set accuracy, log-likelihood and confusion matrix against an always-majority baseline |
 
 ### Structure-learning findings so far
@@ -45,6 +45,7 @@ parameter_inference.py            CPT fitting, exact popularity queries and fitt
 models/                           exported structures and result tables (JSON, CSV, LaTeX)
 figures/<stage>/                  figures for each stage
 *.ipynb                           one notebook per stage; each runs top to bottom
+results/gibbs/                    Gibbs Sampling validation, convergence and runtime results (CSV)
 ```
 
 ## Variables
@@ -119,3 +120,13 @@ metrics are computed during parameter selection.
 * When two moves tie on score, pgmpy's structure search picks one based on Python's string hash order. Run with **`PYTHONHASHSEED=0`** to reproduce `models/structures.json` exactly. The notebook warns if the variable is not set.
 * `data/train.csv` and `data/test.csv` are the canonical split. Regenerating them would change every downstream result.
 * `structure_learning.ipynb` runs top to bottom in about 3 minutes on a laptop.
+
+### Approximate inference findings
+
+- Gibbs Sampling was validated against Variable Elimination across 80 queries and 400 probability estimates, achieving an overall mean absolute error of 0.007979 with 1,000 samples per query.
+- Increasing the sample size from 100 to 10,000 reduced the observed mean absolute error by approximately 92% across three selected queries.
+- Variable Elimination was significantly faster for our 10-variable Bayesian Network.
+- Increasing the number of Gibbs samples improved approximation accuracy but increased computational cost.
+
+Details and experiments are in `approximate_inference.ipynb`.
+Results are available in `results/gibbs/` and figures in `figures/gibbs/`.
