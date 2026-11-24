@@ -4,3 +4,8 @@
 venv
 __pycache__/
 .ipynb_checkpoints/
+
+# Course materials and exports: never commit (example projects are other students' work)
+CSE_150A_250A_Final_Project_Guidelines.pdf
+example projects/
+CSE 250 - FINAL PROJECT.pdf

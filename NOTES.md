@@ -6,13 +6,13 @@ Internal working notes. The public overview, setup steps and usage examples are 
 
 ## Status
 
-| Stage | Owner | Notebook (suggested names for ⏳ rows) | Report section | Status |
+| Stage | Owner | Notebook | Report section | Status |
 |---|---|---|---|---|
 | 1. Data cleaning, discretization, split | Irving | `data_processing.ipynb` | §2 | ✅ done, split frozen |
 | 2. Structure learning | Zachary | `structure_learning.ipynb` | §3 (structure) | ✅ done; LaTeX draft in `report/` |
 | 3. Parameter learning + Variable Elimination | Ethan | `parameter_learning.ipynb` | §3 (CPTs, VE) | ✅ done; handoff below |
 | 4. Gibbs sampling + convergence | Andrew | `approximate_inference.ipynb` | §3 (Gibbs), §4 (convergence) | ✅ done; handoff below |
-| 5. Evaluation, results, report integration | Jeslyn | `evaluation.ipynb` | §1, §4, §5, §7 | ⏳ |
+| 5. Evaluation, results, report integration | Jeslyn | `evaluation.ipynb` | §1, §4, §5, §7 | ✅ code done; report being finalized (paste-ready fixes in `report/report_additions.md`) |
 
 When you finish, update your row and add a handoff section below.
 

@@ -11,10 +11,21 @@ A CSE 150A/250A final project. We model how a song's audio features (energy, aco
 | 1. Data | `data_processing.ipynb` | Cleans the data, discretizes the continuous features and makes the 80/20 train/test split |
 | 2. Structure | `structure_learning.ipynb` | Compares a hand-designed DAG with structures learned by Hill Climb (BIC, AIC, K2, BDeu), GES, PC, Chow-Liu, Naive Bayes and TAN; covers cross-validated structure selection and bootstrap edge stability |
 | 3. Parameters + exact inference | `parameter_learning.ipynb` | MLE/BDeu CPT estimation with training-only cross-validation; Variable Elimination queries and fitted models |
-| 4. Approximate inference | `appoximate_inference.ipynb` | Gibbs sampling vs. Variable Elimination: accuracy and convergence |
-| 5. Evaluation | *in progress* | Test-set accuracy, log-likelihood and confusion matrix against an always-majority baseline |
+| 4. Approximate inference | `approximate_inference.ipynb` | Gibbs sampling vs. Variable Elimination: accuracy and convergence |
+| 5. Evaluation | `evaluation.ipynb` | Held-out test accuracy, log-loss, joint log-likelihood and confusion matrices against an always-majority baseline, with paired bootstrap confidence intervals |
 
-### Structure-learning findings so far
+**Final model:** structure `HC start=hand` (Hill Climb + BIC started from our hand-designed DAG) with BDeu-smoothed CPTs, ESS = 20. Structure, prior strength and every other choice were made using only the training set.
+
+### Test-set results (893 held-out songs)
+
+| Model | Accuracy | Log-loss (nats/song) | Joint log-likelihood (nats/song) |
+|---|---|---|---|
+| `HC start=hand` (final) | 44.3% | 1.298 | −13.24 |
+| Always-majority baseline | 32.7% | 1.379 | −14.21 |
+
+See `evaluation.ipynb` and `models/test_results.csv` for every model, the confidence intervals and the confusion matrices.
+
+### Structure-learning findings
 
 * Popularity is only weakly related to any audio feature. **Release decade** is its strongest neighbour. Beyond decade there is one small but consistent signal, carried equally well by **acousticness or energy**: the two are strongly correlated and interchangeable, and using both overfits. Danceability and duration add nothing significant.
 * Hill Climb + BIC finds a 166-parameter graph with a much better BIC than our 1,031-parameter hand-designed DAG (−48,064 vs. −50,913). BIC supports only **one** parent for the 5-state popularity variable.
@@ -58,7 +69,7 @@ All 10 variables are discrete. Their states are strings, exactly as they appear 
 | `energy`, `valence`, `danceability`, `acousticness` | five equal-width bins on [0, 1], e.g. `(0.8, 1.0]` |
 | `tempo` | `slow` (< 90 BPM), `mid` (90–120), `upbeat` (120–150), `fast` (> 150) |
 | `duration` | `< 2 min`, `2-3 min`, `3-4 min`, `4-5 min`, `5+ min` |
-| `decade` | `Before 1990`, `1990s`, `2000s`, `2010s`, `2020s` |
+| `decade` | `Before 1990` (≤ 1990), `1990s` (1991–2000), `2000s` (2001–2010), `2010s` (2011–2020), `2020s` (2021 on). The bins are right-closed, so a song released in, e.g., 2020 is labelled `2010s`. |
 | `mode` | `0.0` (minor), `1.0` (major) |
 | `key` | `0.0` … `11.0` (pitch class) |
 
@@ -83,9 +94,9 @@ VariableElimination(model).query(["popularity"], evidence={"decade": "2020s", "a
 
 | Role | Structure | Why |
 |---|---|---|
-| Main learned model | `HC + BIC` | Hill Climb + BIC from an empty graph |
+| Main learned model | `HC + BIC` | Hill Climb + BIC from an empty graph (comparison model) |
 | Highest BIC | `GES (BIC)` | Greedy equivalence search finds a slightly better optimum |
-| Best predictive / feature queries | `HC start=hand` | Lowest cross-validated log-loss; popularity's Markov blanket is {decade, acousticness} |
+| Best predictive / feature queries | `HC start=hand` | **The final model.** Lowest cross-validated log-loss; popularity's Markov blanket is {decade, acousticness} |
 | Prior-knowledge baseline | `Hand-designed` | The DAG from our proposal |
 
 Pass `state_names=state_names()` when fitting. Then every CPT covers the full state space, and evidence on any state is valid.
